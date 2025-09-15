@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -10,11 +16,13 @@ type RepaymentType = "principal_interest" | "interest_only";
 type PaymentFrequency = "weekly" | "fortnightly" | "monthly";
 
 export function LoanCalculator() {
-  const [repaymentType, setRepaymentType] = useState<RepaymentType>("principal_interest");
+  const [repaymentType, setRepaymentType] =
+    useState<RepaymentType>("principal_interest");
   const [loanTerm, setLoanTerm] = useState(30);
   const [interestRate, setInterestRate] = useState(5.89);
   const [loanAmount, setLoanAmount] = useState(300000);
-  const [paymentFrequency, setPaymentFrequency] = useState<PaymentFrequency>("weekly");
+  const [paymentFrequency, setPaymentFrequency] =
+    useState<PaymentFrequency>("weekly");
   const [repaymentAmount, setRepaymentAmount] = useState(0);
 
   const calculateRepayment = () => {
@@ -42,17 +50,18 @@ export function LoanCalculator() {
       // Principal & Interest calculation
       const monthlyRate = annualRate / 12;
       const numberOfPayments = years * 12;
-      
-      const monthlyPayment = principal * 
-        (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+
+      const monthlyPayment =
+        (principal *
+          (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
         (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
 
       switch (paymentFrequency) {
         case "weekly":
-          setRepaymentAmount(monthlyPayment * 12 / 52);
+          setRepaymentAmount((monthlyPayment * 12) / 52);
           break;
         case "fortnightly":
-          setRepaymentAmount(monthlyPayment * 12 / 26);
+          setRepaymentAmount((monthlyPayment * 12) / 26);
           break;
         case "monthly":
           setRepaymentAmount(monthlyPayment);
@@ -66,29 +75,29 @@ export function LoanCalculator() {
   }, [repaymentType, loanTerm, interestRate, loanAmount, paymentFrequency]);
 
   const handleLoanAmountChange = (value: string) => {
-    const numValue = parseInt(value.replace(/,/g, ''));
+    const numValue = parseInt(value.replace(/,/g, ""));
     if (!isNaN(numValue)) {
       setLoanAmount(numValue);
     }
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-AU', {
-      style: 'currency',
-      currency: 'AUD',
+    return new Intl.NumberFormat("en-AU", {
+      style: "currency",
+      currency: "AUD",
       minimumFractionDigits: 2,
     }).format(amount);
   };
 
   const formatLoanAmount = (amount: number) => {
-    return new Intl.NumberFormat('en-AU').format(amount);
+    return new Intl.NumberFormat("en-AU").format(amount);
   };
 
   return (
     <div className="min-h-screen bg-background py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
@@ -102,7 +111,7 @@ export function LoanCalculator() {
         </motion.div>
 
         {/* Main Calculator */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -113,30 +122,48 @@ export function LoanCalculator() {
             <h2 className="text-xl font-semibold mb-6 text-card-foreground">
               Home Loan Repayment Calculator
             </h2>
-            
+
             <div className="grid md:grid-cols-2 gap-8">
               {/* Left Column - Input Fields */}
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="repayment-type" className="text-sm font-medium text-card-foreground">
+                  <Label
+                    htmlFor="repayment-type"
+                    className="text-sm font-medium text-card-foreground"
+                  >
                     Repayment type
                   </Label>
-                  <Select value={repaymentType} onValueChange={(value: RepaymentType) => setRepaymentType(value)}>
+                  <Select
+                    value={repaymentType}
+                    onValueChange={(value: RepaymentType) =>
+                      setRepaymentType(value)
+                    }
+                  >
                     <SelectTrigger className="mt-1">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="principal_interest">Principal & Interest</SelectItem>
-                      <SelectItem value="interest_only">Interest Only</SelectItem>
+                      <SelectItem value="principal_interest">
+                        Principal & Interest
+                      </SelectItem>
+                      <SelectItem value="interest_only">
+                        Interest Only
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
 
                 <div>
-                  <Label htmlFor="loan-term" className="text-sm font-medium text-card-foreground">
+                  <Label
+                    htmlFor="loan-term"
+                    className="text-sm font-medium text-card-foreground"
+                  >
                     Loan term
                   </Label>
-                  <Select value={loanTerm.toString()} onValueChange={(value) => setLoanTerm(parseInt(value))}>
+                  <Select
+                    value={loanTerm.toString()}
+                    onValueChange={(value) => setLoanTerm(parseInt(value))}
+                  >
                     <SelectTrigger className="mt-1">
                       <SelectValue />
                     </SelectTrigger>
@@ -151,7 +178,10 @@ export function LoanCalculator() {
                 </div>
 
                 <div>
-                  <Label htmlFor="interest-rate" className="text-sm font-medium text-card-foreground">
+                  <Label
+                    htmlFor="interest-rate"
+                    className="text-sm font-medium text-card-foreground"
+                  >
                     Interest rate
                   </Label>
                   <div className="relative mt-1">
@@ -160,7 +190,9 @@ export function LoanCalculator() {
                       type="number"
                       step="0.01"
                       value={interestRate}
-                      onChange={(e) => setInterestRate(parseFloat(e.target.value) || 0)}
+                      onChange={(e) =>
+                        setInterestRate(parseFloat(e.target.value) || 0)
+                      }
                       className="pr-16"
                     />
                     <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -173,7 +205,10 @@ export function LoanCalculator() {
               {/* Right Column - Loan Amount & Results */}
               <div className="space-y-6">
                 <div>
-                  <Label htmlFor="loan-amount" className="text-sm font-medium text-card-foreground">
+                  <Label
+                    htmlFor="loan-amount"
+                    className="text-sm font-medium text-card-foreground"
+                  >
                     Estimated loan amount
                   </Label>
                   <div className="relative mt-1">
@@ -204,25 +239,29 @@ export function LoanCalculator() {
                   <p className="text-sm text-muted-foreground">
                     Your estimated repayments would be
                   </p>
-                  <motion.div 
+                  <motion.div
                     key={repaymentAmount}
                     initial={{ scale: 0.9 }}
                     animate={{ scale: 1 }}
-                    className="text-4xl font-bold text-amount"
+                    className="text-4xl font-bold text-amount text-purple-700"
                   >
                     {formatCurrency(repaymentAmount)}
                   </motion.div>
-                  
+
                   <div className="flex gap-2">
-                    {(["weekly", "fortnightly", "monthly"] as PaymentFrequency[]).map((freq) => (
+                    {(
+                      ["weekly", "fortnightly", "monthly"] as PaymentFrequency[]
+                    ).map((freq) => (
                       <Button
                         key={freq}
-                        variant={paymentFrequency === freq ? "default" : "outline"}
+                        variant={
+                          paymentFrequency === freq ? "default" : "outline"
+                        }
                         size="sm"
                         onClick={() => setPaymentFrequency(freq)}
                         className={`capitalize ${
-                          paymentFrequency === freq 
-                            ? "bg-button-active text-white" 
+                          paymentFrequency === freq
+                            ? "bg-button-active text-white"
                             : "bg-button-inactive text-card-foreground hover:bg-button-active hover:text-white"
                         }`}
                       >
@@ -248,7 +287,7 @@ export function LoanCalculator() {
             <p className="text-sm text-cta-text/90 mb-6">
               Check your eligibility with 26 lenders online, instantly.
             </p>
-            <Button 
+            <Button
               className="w-full bg-white text-primary hover:bg-gray-100 font-semibold"
               size="lg"
             >
