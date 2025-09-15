@@ -47,6 +47,23 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        calculator: {
+          bg: "hsl(var(--calculator-bg))",
+          border: "hsl(var(--calculator-border))",
+        },
+        amount: "hsl(var(--amount-text))",
+        cta: {
+          bg: "hsl(var(--cta-bg))",
+          text: "hsl(var(--cta-text))",
+        },
+        button: {
+          active: "hsl(var(--button-active))",
+          inactive: "hsl(var(--button-inactive))",
+        },
+        slider: {
+          track: "hsl(var(--slider-track))",
+          thumb: "hsl(var(--slider-thumb))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
