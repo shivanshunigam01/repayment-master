@@ -105,9 +105,9 @@ export function LoanCalculator() {
           <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4">
             HOME LOAN REPAYMENT CALCULATOR
           </h1>
-          <p className="text-lg text-muted-foreground">
+          {/* <p className="text-lg text-muted-foreground">
             See your estimated repayments per week/fortnight/month
-          </p>
+          </p> */}
         </motion.div>
 
         {/* Main Calculator */}

@@ -8,7 +8,7 @@ export function InfoSection() {
       transition={{ delay: 0.6 }}
       className="max-w-6xl mx-auto px-4 py-12"
     >
-      <div className="bg-calculator-bg border border-calculator-border rounded-2xl p-8 shadow-lg">
+      {/* <div className="bg-calculator-bg border border-calculator-border rounded-2xl p-8 shadow-lg">
         <h2 className="text-2xl font-bold text-card-foreground mb-6">
           How to use our home loan repayment calculator
         </h2>
@@ -59,7 +59,7 @@ export function InfoSection() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </motion.div>
   );
 }

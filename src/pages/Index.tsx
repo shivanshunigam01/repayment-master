@@ -8,8 +8,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <ThemeToggle />
       <LoanCalculator />
-      <InfoSection />
-      <ComparisonTable />
+      {/* <InfoSection /> */}
+      {/* <ComparisonTable /> */}
     </div>
   );
 };
