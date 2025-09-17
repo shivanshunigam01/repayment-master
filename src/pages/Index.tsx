@@ -1,7 +1,7 @@
-import { LoanCalculator } from "@/components/LoanCalculator";
 import { InfoSection } from "@/components/InfoSection";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import LoanCalculator from "@/components/LoanCalculator";
 
 const Index = () => {
   return (
