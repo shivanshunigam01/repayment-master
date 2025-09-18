@@ -49,10 +49,8 @@ export default function LoanCalculator() {
           break;
       }
     } else {
-      // Principal & Interest calculation
       const monthlyRate = annualRate / 12;
       const numberOfPayments = years * 12;
-
       const monthlyPayment =
         (principal *
           (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments))) /
@@ -96,24 +94,24 @@ export default function LoanCalculator() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-white dark:bg-[#141B24]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="w-full max-w-4xl bg-calculator-bg border border-calculator-border rounded-2xl p-8 shadow-lg"
+        className="w-full max-w-4xl bg-white dark:bg-[#141B24] border border-gray-200 dark:border-gray-700 rounded-2xl p-8 shadow-lg"
       >
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-primary mb-2">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#0A2A66] dark:text-white mb-2">
             Home Loan Repayment Calculator
           </h1>
-          {/* <p className="text-muted-foreground">
+          <p className="text-gray-600 dark:text-gray-300">
             See your estimated repayments per week/fortnight/month
-          </p> */}
+          </p>
         </div>
 
         {/* Calculator Form */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 text-gray-800 dark:text-white">
           {/* Left Column */}
           <div className="space-y-6">
             {/* Repayment Type */}
@@ -169,9 +167,9 @@ export default function LoanCalculator() {
                   onChange={(e) =>
                     setInterestRate(parseFloat(e.target.value) || 0)
                   }
-                  className="pr-16"
+                  className="pr-16 bg-white dark:bg-[#1F2937] text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 rounded-lg"
                 />
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300">
                   % p.a.
                 </span>
               </div>
@@ -184,7 +182,7 @@ export default function LoanCalculator() {
             <div>
               <Label htmlFor="loan-amount">Estimated loan amount</Label>
               <div className="relative mt-1">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300">
                   $
                 </span>
                 <Input
@@ -192,7 +190,7 @@ export default function LoanCalculator() {
                   type="text"
                   value={formatLoanAmount(loanAmount)}
                   onChange={(e) => handleLoanAmountChange(e.target.value)}
-                  className="pl-8 text-lg font-medium text-primary"
+                  className="pl-8 text-lg font-medium text-gray-800 dark:text-white bg-white dark:bg-[#1F2937] border border-gray-300 dark:border-gray-600 rounded-lg"
                 />
               </div>
               <div className="mt-4">
@@ -208,14 +206,14 @@ export default function LoanCalculator() {
 
             {/* Repayment Result */}
             <div className="space-y-4">
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm text-gray-600 dark:text-gray-300">
                 Your estimated repayments would be
               </p>
               <motion.div
                 key={repaymentAmount}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
-                className="text-4xl font-bold text-[#0A2A66]"
+                className="text-4xl font-bold text-[#0A2A66] dark:text-white"
               >
                 {formatCurrency(repaymentAmount)}
               </motion.div>
@@ -233,7 +231,7 @@ export default function LoanCalculator() {
                     className={`capitalize ${
                       paymentFrequency === freq
                         ? "bg-primary text-white"
-                        : "bg-button-inactive text-card-foreground hover:bg-primary hover:text-white"
+                        : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white hover:bg-primary hover:text-white"
                     }`}
                   >
                     {freq}
